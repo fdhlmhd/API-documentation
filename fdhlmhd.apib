@@ -1,0 +1,104 @@
+FORMAT: 1A
+HOST: https://private-d3795-fdhlmhd.apiary-mock.com/api
+# users API
+
+Tutorial membuat API Blueprint dengan apiary.io
+
+# Group users
+
+# users Collection [/users]
+
+- Attributes (users)
+
+### Retrieve All Users [GET]
+
+- Request (application/json)
+- Response 200 (application/json)
+    - Attributes (users)
+
+### Filter User [GET /users{?type}]
+
+- Parameters
+
+    - type : Tetap (enum[string], optional)
+        - Default : `Empty`
+        - Members
+            - Empty
+            - Tetap
+            - Freelance
+            - Kontrak
+
+- Request (application/json)
+- Response 200 (application/json)
+    - Attributes (users)
+
+### Create users [POST]
+
+- Request (application/json)
+    
+    - Attributes (users Create)
+
+- Response 201 (application/json)
+
+    - Attributes (users)
+
+## users Resource [/users/{id}]
+
+- Parameters
+    - id : 6c34a6af-752d-408a-b5d3-00a368e7201e
+    
+- Attributes (users)
+
+### Update (patch) A users [PATCH]
+
+- Request Successfull Update (application/json)
+
+    - Attributes (users Update Valid)
+
+- Response 201 (application/json)
+
+    - Attributes (users)
+        - type : Kontrak
+        
+- Request Unsuccessfull users (application/json)
+
+    - Attributes (users Update Invalid)
+    
+- Response 422 (application/json)
+
+    - Attributes (Error Unprocessable Entity)
+        - message : `This was an invalid type, please select Tetap, Freelance or Kontrak`
+        - attribute : type
+
+### Delete A users [DELETE]
+
+- Response 204
+
+# Data Structures
+
+## users Create (object)
+
+- name : Fadhel Muhammad (string, required)
+- email : `fdhlmhd26@gmail.com` (string, required)
+- phone : `081378908551` (string, required)
+- type : Tetap (enum[string], required)
+    - Tetap
+    - Freelance
+    - Kontrak
+
+## users (object)
+
+- id : 6c34a6af-752d-408a-b5d3-00a368e7201e (string, required)
+- Include users Create
+
+## users Update Valid
+
+- type : Kontrak
+
+## users Update Invalid
+
+- type : `Tidak Tetap`
+
+## Error Unprocessable Entity
+- title : Unprocessable Entity
+- message : This resource could not be updated due to invalid arguments being passed
